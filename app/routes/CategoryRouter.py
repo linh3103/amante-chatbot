@@ -1,6 +1,7 @@
 from fastapi import APIRouter
+from app.controllers.CategoryController import categoryList
 
 router = APIRouter()
 @router.get("/categories")
 def read_categories():
-    return [{"id": 1, "name": "Category 1"}, {"id": 2, "name": "Category 2"}]
+    return categoryList()
