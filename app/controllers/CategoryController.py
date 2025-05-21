@@ -6,6 +6,9 @@ def categoryList():
         # Simulate a call to an external API
         response = httpx.get("http://175.126.226.143:3010/v1.0/filter/category/list")
         response.raise_for_status()  # Raise an error for bad responses
+
+        print("Hello sub branch")
+
         categories = response.json()
         return JSONResponse(content=categories, status_code=200)
     except httpx.RequestError as e:
