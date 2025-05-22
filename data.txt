@@ -1,0 +1,26 @@
+[
+    {
+        "intent": "order_product",
+        "slots": {
+            "product": "áo thun",
+            "quantity": "2"
+        },
+        "ask": "Tôi muốn mua 2 cái áo thun."
+    },
+    {
+        "intent": "check_price",
+        "slots": {
+            "product": "Váy",
+            "color": "hồng"
+        },
+        "ask": "Chiếc váy màu hồng giá bao nhiêu"
+    },
+    {
+        "intent": "nothing",
+        "slots": {
+            "product": "Váy",
+            "color": "hồng"
+        },
+        "ask": ""
+    }
+]

@@ -1,16 +1,20 @@
 import httpx
 from fastapi.responses import JSONResponse
+from app.servies.CategoryService import fetchCategories
 
-def categoryList():
+async def categoryList():
     try:
-        # Simulate a call to an external API
-        response = httpx.get("http://175.126.226.143:3010/v1.0/filter/category/list")
-        response.raise_for_status()  # Raise an error for bad responses
-
-        print("Hello sub branch")
-
-        categories = response.json()
-        return JSONResponse(content=categories, status_code=200)
+        categories = await fetchCategories()
+        if not categories:
+            return JSONResponse(content={"message": "No categories found"})
+        else:
+            return JSONResponse(
+                content={
+                    "success": True,
+                    "message": "Categories fetched successfully",
+                    "categories": [c.model_dump() for c in categories],
+                }
+            )
     except httpx.RequestError as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
     except httpx.HTTPStatusError as e:
